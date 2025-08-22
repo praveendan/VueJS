@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vue Basics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/vue@3.4.9/dist/vue.global.js"></script>
+  <script src="app.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <h1>Vue Dynamic Styling</h1>
+  </header>
+  <section id="styling">
+    <div class="demo" :style="{borderColor: boxAselected? 'red': '#ccc'}" @click="selectBox('A')"></div>
+    <div :class="boxBselected? 'demo active' : 'demo'" @click="selectBox('B')"></div>
+    <div class="demo" :class="{active: boxCselected}" @click="selectBox('C')"></div>
+    <div class="demo" :class="boxDClasses" @click="selectBox('D')"></div>
+    <div class="demo" :class="[ 'demo', {active: boxEselected}]" @click="selectBox('E')"></div>
+  </section>
+</body>
+
+</html>
