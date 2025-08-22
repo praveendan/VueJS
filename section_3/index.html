@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vue Basics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/vue@3.4.9/dist/vue.global.js"></script>
+  <script src="app.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <h1>Vue Course Goals</h1>
+  </header>
+  <section id="user-goals">
+    <h2>My course goals</h2>
+    <input type="text" v-model="enteredGoalValue" />
+    <button @click="addGoal">Add Goal</button>
+    <!-- v-show can be used to show hide without mount unount-->
+    <p v-if="goals.length === 0">No goals have been added yet - please start adding some!</p>
+    <ul v-else>
+      <li v-for="(goal, index) in goals" :key="goal" @click="removeGoal(index)">
+        <P>{{goal}}</P>
+        <!--  @click.stop === stop propagation -->
+        <input type="text" @click.stop />
+      </li>
+    </ul>
+    <div v-if="isListShown">
+      <h3>NOtable mentions</h3>
+      <ul>
+        <li v-for="goal in goals">{{goal}}</li>
+      </ul>
+      <ul>
+        <li v-for="value in {name: 'sam', age: 31}">{{value}}</li>
+      </ul>
+      <ul>
+        <li v-for="(value, key) in {name: 'sam', age: 31}">{{ key }} - {{value}}</li>
+      </ul>
+      <ul>
+        <li v-for="num in 3">{{num}}</li>
+      </ul>
+    </div>
+
+    <button @click="toggleList">{{buttonCaption}}</button>
+  </section>
+</body>
+
+</html>
