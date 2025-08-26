@@ -5,16 +5,14 @@
     </header>
     <ul>
       <friend-contact
-        name="Manuel Lorenz"
-        phone-number="0123 45678 90"
-        email-address="manuel@localhost.com"
-        is-favourite="1"
-      ></friend-contact>
-      <friend-contact
-        name="Julie Jones"
-        phone-number="0123 45678 90"
-        email-address="julie@localhost.com"
-        is-favourite="2"
+        v-for="friend in friends"
+        :key="friend.id"
+        :id="friend.id"
+        :name="friend.name"
+        :phone-number="friend.phone"
+        :email-address="friend.email"
+        :is-favorite="friend.isFavorite"
+        @toggle-favorite="toggleFavoriteStatus"
       ></friend-contact>
     </ul>
   </section>
@@ -26,19 +24,29 @@ export default {
     return {
       friends: [
         {
-          id: "manuel",
-          name: "Manuel Lorenz",
-          phone: "0123 45678 90",
-          email: "manuel@localhost.com",
+          id: 'manuel',
+          name: 'Manuel Lorenz',
+          phone: '0123 45678 90',
+          email: 'manuel@localhost.com',
+          isFavorite: true,
         },
         {
-          id: "julie",
-          name: "Julie Jones",
-          phone: "0987 654421 21",
-          email: "julie@localhost.com",
+          id: 'julie',
+          name: 'Julie Jones',
+          phone: '0987 654421 21',
+          email: 'julie@localhost.com',
+          isFavorite: false,
         },
       ],
     };
+  },
+  methods: {
+    toggleFavoriteStatus(friendId) {
+      const identifiedFriend = this.friends.find(
+        (friend) => friend.id === friendId
+      );
+      identifiedFriend.isFavorite = !identifiedFriend.isFavorite;
+    },
   },
 };
 </script>
@@ -48,7 +56,7 @@ export default {
   box-sizing: border-box;
 }
 html {
-  font-family: "Jost", sans-serif;
+  font-family: 'Jost', sans-serif;
 }
 body {
   margin: 0;
