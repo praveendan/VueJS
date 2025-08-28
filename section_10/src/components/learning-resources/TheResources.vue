@@ -43,6 +43,7 @@ export default {
     return {
       resources: this.storedResources,
       addResource: this.addResource,
+      deleteResource: this.removeResource
     };
   },
   computed: {
@@ -66,6 +67,18 @@ export default {
       };
       this.storedResources.unshift(newResource);
       this.selectedTab = 'stored-resources';
+    },
+    removeResource(resId) {
+      /**
+       * becasue rewriting will not propagate to the child
+       * if we 
+       * this.storedResources = this.storedResources.filter(...)
+       * it will rewrite the data but child will not get updated. child will point 
+       * to a different memory. so we have to mutate the original which the
+       * child looks at in the memory
+       */
+      const resIndex = this.storedResources.findIndex(res => res.id === resId);
+      this.storedResources.splice(resIndex, 1);
     },
   },
 };
