@@ -15,7 +15,8 @@ export default {
   inject: ['users'],
   methods: {
     confirmInput() {
-      this.$router.push('/teams')
+      // do something
+      this.$router.push('/teams');
     }
   }
 };
