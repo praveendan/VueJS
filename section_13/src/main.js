@@ -11,6 +11,8 @@ import UsersFooter from './components/users/UsersFooter.vue';
 
 /**
  * Named routes will help to prevent code repition as we can assess the route via name
+ * scrollBehavior can be used to auto scroll to the previous postion of the previous page when the user 
+ * clicks back button
  */
 
 const router = createRouter({
@@ -39,7 +41,14 @@ const router = createRouter({
     },
     { path: '/:notFound(.*)', component: NotFound }
   ],
-  linkActiveClass: 'active'
+  linkActiveClass: 'active',
+  scrollBehavior(to, from, savedPosition) {
+    console.log(to, from, savedPosition);
+    if (savedPosition) {
+      return savedPosition;
+    }
+    return { left: 0, top: 0 };
+  }
 });
 
 const app = createApp(App);
