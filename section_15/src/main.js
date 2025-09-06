@@ -4,31 +4,37 @@ import { createStore } from 'vuex';
 import App from './App.vue';
 
 const counterModule = {
+  namespaced: true,
   state() {
     return {
       counter: 0
-    }
+    };
   },
   mutations: {
     increment(state) {
       state.counter = state.counter + 2;
     },
     increase(state, payload) {
+      console.log(state);
       state.counter = state.counter + payload.value;
     }
   },
   actions: {
     increment(context) {
-      setTimeout(function () {
+      setTimeout(function() {
         context.commit('increment');
       }, 2000);
     },
     increase(context, payload) {
       console.log(context);
       context.commit('increase', payload);
-    }
+    },
+    login() {}
   },
   getters: {
+    testAuth(state) {
+      return state.isLoggedIn;
+    },
     finalCounter(state) {
       return state.counter * 3;
     },
@@ -43,7 +49,7 @@ const counterModule = {
       return finalCounter;
     }
   }
-}
+};
 
 const store = createStore({
   modules: {
