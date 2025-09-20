@@ -1,5 +1,3 @@
-import API_URL from './../../../constants'
-
 export default {
   async registerCoach(context, data) {
     const userId = context.rootGetters.userId;
@@ -12,7 +10,7 @@ export default {
     };
 
     const response = await fetch(
-      `${API_URL}/coaches/${userId}.json`,
+      `<API>/coaches/${userId}.json`,
       {
         method: 'PUT',
         body: JSON.stringify(coachData)
@@ -32,7 +30,7 @@ export default {
   },
   async loadCoaches(context) {
     const response = await fetch(
-      `${API_URL}/coaches.json`
+      `<API>/coaches.json`
     );
     const responseData = await response.json();
 
